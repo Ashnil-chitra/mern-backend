@@ -7,7 +7,11 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(cors());
+// ✅ Enable CORS for all origins and methods
+app.use(cors({
+  origin: "*", // ya specific like "https://mern-frontend-alpha-dun.vercel.app"
+  methods: ["GET", "POST", "PUT", "DELETE"],
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
