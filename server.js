@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const contactRoute = require("./routes/contact");
+const dashboardRoutes = require('./routes/dashboardRoutes');
+
 
 require('dotenv').config();
 
@@ -22,6 +24,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 app.use('/api/users', require('./routes/userRoutes'));
 
 app.use("/api/contact", contactRoute);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running!");
