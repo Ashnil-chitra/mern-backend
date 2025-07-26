@@ -23,4 +23,13 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  try {
+    await Contact.findByIdAndDelete(req.params.id);
+    res.json({ message: "Deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Delete failed" });
+  }
+});
+
 module.exports = router;
