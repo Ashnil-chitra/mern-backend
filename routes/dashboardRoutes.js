@@ -1,14 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const Contact = require('../models/Contact'); // if you created contact form schema
-
+// const Contact = require('../models/Contact');
+// const Project = require('../models/Project');
 
 router.get('/stats', async (req, res) => {
   try {
+    console.log("Fetching stats..."); // log start
     const totalUsers = await User.countDocuments();
-    const totalContacts = await Contact.countDocuments();
-    const totalProjects = await Project.countDocuments();
+    console.log("User count:", totalUsers); // log user count
+
+    const totalContacts = 0;
+    const totalProjects = 0;
 
     res.json({
       users: totalUsers,
@@ -16,6 +19,7 @@ router.get('/stats', async (req, res) => {
       projects: totalProjects
     });
   } catch (err) {
+    console.error("Error in /dashboard/stats:", err); // log error
     res.status(500).json({ message: 'Error fetching stats' });
   }
 });
