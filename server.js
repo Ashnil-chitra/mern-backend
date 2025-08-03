@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const contactRoute = require("./routes/contact");
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const feedbackRoutes = require("./routes/feedbackRoutes");
+
+
+
 
 
 require('dotenv').config();
@@ -25,6 +29,7 @@ app.use('/api/users', require('./routes/userRoutes'));
 
 app.use("/api/contact", contactRoute);
 app.use('/api/dashboard', dashboardRoutes);
+app.use("/api/feedbacks", feedbackRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running!");
